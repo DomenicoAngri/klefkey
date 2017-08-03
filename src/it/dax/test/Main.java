@@ -22,8 +22,16 @@ public class Main{
         }
 
         try {
-            PrivateKey privateKey = cu.getPrivateKey("keys/4096_bit_private_key.ppk");
-            PublicKey publicKey = cu.getPublicKey("keys/4096_bit_public_key");
+            boolean patt = cu.generateKeys(1024);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            PrivateKey privateKey = cu.getPrivateKey("keys/pri_gen");
+            PublicKey publicKey = cu.getPublicKey("keys/pub_gen");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
