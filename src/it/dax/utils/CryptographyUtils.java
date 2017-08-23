@@ -1,9 +1,10 @@
 package it.dax.utils;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,6 +12,7 @@ import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 
 public class CryptographyUtils{
 
@@ -41,13 +43,13 @@ public class CryptographyUtils{
         PrivateKey privateKey = pair.getPrivate();
         PublicKey publicKey = pair.getPublic();
 
-        File pri = new File("keys/pri_gen");
+        File pri = new File("keys/private");
         FileOutputStream fosPri = new FileOutputStream(pri);
         fosPri.write(privateKey.getEncoded());
         fosPri.flush();
         fosPri.close();
 
-        File pub = new File("keys/pub_gen");
+        File pub = new File("keys/public");
         FileOutputStream fosPub = new FileOutputStream(pub);
         fosPub.write(publicKey.getEncoded());
         fosPub.flush();
@@ -56,19 +58,21 @@ public class CryptographyUtils{
         return true;
     }
 
+    public byte[] encrypt(String text, String file) throws NoSuchAlgorithmException, IOException, InvalidKeySpecException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
 
+        PublicKey publicKey = getPublicKey(file);
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+        return cipher.doFinal(text.getBytes());
 
+    }
 
+    public byte[] decrypt(byte[] text, String file) throws NoSuchAlgorithmException, IOException, InvalidKeySpecException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
 
+        PrivateKey privateKey = getPrivateKey(file);
+        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+        return cipher.doFinal(text);
 
-
-
-
-
-
-    //public String encrypt(){
-
-    //}
+    }
 
 
 

@@ -11,36 +11,37 @@ import java.security.spec.InvalidKeySpecException;
 public class Main{
 
     public static void main(String[] args){
+
+        // Test
         CryptographyUtils cu = null;
 
         try {
             cu = new CryptographyUtils();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
+
+            boolean patt = cu.generateKeys(512);
+
+            //PrivateKey privateKey = cu.getPrivateKey("keys/pri_gen");
+            //PublicKey publicKey = cu.getPublicKey("keys/pub_gen");
+
+            String text = "Domenico Angri";
+
+            byte[] encodedText = cu.encrypt(text, "keys/public");
+
+            byte[] decodedText = cu.decrypt(encodedText, "keys/private");
+
+            if (decodedText.equals(text.getBytes())) {
+                System.out.println(true);
+            } else {
+                System.out.println(false);
+            }
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        try {
-            boolean patt = cu.generateKeys(1024);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        try {
-            PrivateKey privateKey = cu.getPrivateKey("keys/pri_gen");
-            PublicKey publicKey = cu.getPublicKey("keys/pub_gen");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
 
-        String text = "Domenico Angri";
 
     }
 
