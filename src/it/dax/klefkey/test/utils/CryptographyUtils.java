@@ -1,4 +1,4 @@
-package it.dax.utils;
+package it.dax.klefkey.test.utils;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

@@ -1,12 +1,6 @@
-package it.dax.test;
+package it.dax.klefkey.test.control;
 
-import it.dax.utils.CryptographyUtils;
-import javax.crypto.NoSuchPaddingException;
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.spec.InvalidKeySpecException;
+import it.dax.klefkey.test.utils.CryptographyUtils;
 
 public class Main{
 
