@@ -2,6 +2,9 @@ package it.dax.klefkey.offline.control;
 
 import com.google.gson.Gson;
 import it.dax.klefkey.offline.model.PasswordJsonDb;
+
+import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +41,10 @@ public class Main{
         ciao.put("prova","figa");
 
         ciao.isEmpty();
+
+        String aus = new String();
+
+        aus.
 
 
         System.out.println(ciao.get((String)"prova"));

@@ -21,6 +21,7 @@ public class CryptographyUtils{
         cipher = Cipher.getInstance("RSA");
     }
 
+    // Devo ottenere la chiave privata personale.
     public PrivateKey getPrivateKey(String file) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
         byte[] keyBytes = Files.readAllBytes(new File(file).toPath());
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
